@@ -34,10 +34,9 @@ Route::prefix('users')->group(function () {
 Route::prefix('site')->group(function(){
     Route::get('/', [SiteController::class, 'index'])->name('site.index');
 });
-Route::prefix('stories')->group(function(){
-Route::get('/', [HistorysController::class, 'index'])->name('stories.index');
-Route::get('/postar-historia', [HistorysController::class, 'create'])->name('historia.create');
-Route::post('/postar-historia', [HistorysController::class, 'store'])->name('historia.store');
 
-});
+    Route::get('/stories', [HistorysController::class, 'index'])->name('stories.index');
+    Route::get('/stories/{id}', [HistorysController::class, 'show'])->name('stories.show');
+
+
 

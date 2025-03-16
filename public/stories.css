@@ -1,0 +1,42 @@
+/* Dark Mode */
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.story-title {
+    cursor: pointer;
+    font-size: 1.5em;
+    margin: 10px 0;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.story-title:hover {
+    background: #555;
+}
+
+#story-content {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1.2em;
+}

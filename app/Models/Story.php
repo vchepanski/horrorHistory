@@ -11,7 +11,7 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $table = 'stories'; // Nome da tabela no banco de dados
+    protected $table = 'stories';
 
     protected $fillable = [
         'title',

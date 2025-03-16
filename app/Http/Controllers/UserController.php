@@ -10,7 +10,7 @@ class UserController extends Controller
 
     public function read(){
     $users = User::get();
-
+        dd($users);
         return view ('users', compact('users'));
     }
     public function create(){
