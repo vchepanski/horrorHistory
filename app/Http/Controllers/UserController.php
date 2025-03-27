@@ -9,8 +9,19 @@ class UserController extends Controller
 {
 
     public function read(){
+        // $novaColecao = $colecao->map(function ($item) {
+        //     return transformação_do_item;
+        // });
     $users = User::get();
-        dd($users);
+        $collectionUsers = $users->map(function($user){
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'status' => $user->ativo ? 'Ativo' : 'Inativo'
+            ];
+        });
+        dd($collectionUsers);
+
         return view ('users', compact('users'));
     }
     public function create(){

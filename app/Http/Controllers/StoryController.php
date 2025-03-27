@@ -8,6 +8,7 @@ use App\Models\Story;
 
 class StoryController extends Controller
 {
+
     public function create()
     {
         $categories = Category::all();

@@ -23,6 +23,14 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function setNameAttribute(){
+        return strtoupper($this->name);
+    }
+
+    public function setNamemailAttibute(){
+        return $this->name . $this->email;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
