@@ -20,7 +20,7 @@
 
   onMounted(async () => {
     try {
-      const response = await axios.get('/api/stories')
+    const response = await axios.get('/api/v1/stories')
       stories.value = response.data
     } catch (e) {
       console.error('Erro ao carregar histórias', e)

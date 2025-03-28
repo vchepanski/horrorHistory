@@ -3,19 +3,16 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
-use App\Models\Story;
+use App\Http\Controllers\Api\V1\StoryController;
+use App\Http\Controllers\Api\V1\CategoryController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/categories', function () {
-    return Category::select('id', 'name')->get();
-});
 
-Route::get('/stories', function () {
-    return Story::with('category')
-        ->where('is_published', true)
-        ->orderBy('created_at', 'desc')
-        ->get(['id', 'title', 'content', 'category_id']);
+Route::prefix('v1')->group(function () {
+    Route::get('/stories', [StoryController::class, 'index']);
+    Route::post('/story', [StoryController::class, 'store']);
+    Route::get('/categories', [CategoryController::class, 'index']);
 });

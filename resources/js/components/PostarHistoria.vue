@@ -60,7 +60,7 @@
 
   onMounted(async () => {
     try {
-      const response = await axios.get('/api/categories')
+      const response = await axios.get('/api/v1/categories') // ✅ Atualizado
       categorias.value = response.data
     } catch (e) {
       erro.value = 'Erro ao carregar categorias'
@@ -81,7 +81,7 @@
     }
 
     try {
-      await axios.post('/story', payload, {
+      await axios.post('/api/v1/story', payload, { // ✅ Atualizado
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       mensagem.value = 'História enviada com sucesso!'
