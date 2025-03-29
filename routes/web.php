@@ -51,4 +51,8 @@ Route::prefix('site')->group(function(){
         return view('stories.index');
     });
 
+    Route::get('/{any}', function () {
+        return view('index');
+    })->where('any', '.*');
+
 

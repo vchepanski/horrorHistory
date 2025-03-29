@@ -1,5 +1,6 @@
-import './bootstrap';
-import { createApp } from 'vue';
-import ListaHistorias from './components/ListaHistorias.vue';
+import './bootstrap'
+import { createApp } from 'vue'
+import App from './views/App.vue'
+import router from './router'
 
-createApp(ListaHistorias).mount('#app');
+createApp(App).use(router).mount('#app')

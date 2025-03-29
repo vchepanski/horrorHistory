@@ -21,6 +21,14 @@ class StoryController extends Controller
         );
     }
 
+    public function show($id)
+{
+    $story = Story::with('category')->findOrFail($id);
+
+    return response()->json($story);
+}
+
+
     /**
      * Armazena uma nova história.
      */
