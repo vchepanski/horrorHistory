@@ -15,7 +15,7 @@ class AdminStoryController extends Controller
     public function approve($id)
     {
         $story = Story::findOrFail($id);
-        $story->is_published = true;
+        $story->status = 'aprovado';
         $story->save();
 
         return response()->json(['message' => 'História aprovada com sucesso!']);
@@ -24,7 +24,8 @@ class AdminStoryController extends Controller
     public function destroy($id)
     {
         $story = Story::findOrFail($id);
-        $story->delete();
+        $story->status = 'inativo';
+        $story->save();
 
         return response()->json(['message' => 'História excluída com sucesso!']);
     }

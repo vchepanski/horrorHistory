@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PostarHistoria from '../components/PostarHistoria.vue'
 import ListaHistorias from '../components/ListaHistorias.vue'
-import VerHistoria from '../components/VerHistoria.vue' // ⬅️ importar o novo componente
+import VerHistoria from '../components/VerHistoria.vue'
 
 const routes = [
   {
@@ -15,19 +15,24 @@ const routes = [
     component: ListaHistorias,
   },
   {
-    path: '/historia/:id',           // ⬅️ nova rota dinâmica
+    path: '/historia/:id',
     name: 'ver-historia',
     component: VerHistoria,
-    props: true,                     // permite passar o ID como prop (opcional)
+    props: true,
   },
   {
     path: '/',
-    redirect: '/historias'           // página inicial redireciona pra listagem
+    redirect: '/historias',
   },
   {
     path: '/admin/historias',
     name: 'admin.historias',
-    component: () => import('../views/admin/adminStories.vue')
+    component: () => import('../views/Admin/adminStories.vue')
+  },
+  {
+    path: '/admin/categories', // ⬅️ nova rota admin
+    name: 'admin.categories',
+    component: () => import('../views/Admin/AdminFormCategories.vue')
   }
 ]
 

@@ -15,7 +15,7 @@ class StoryController extends Controller
     {
         return response()->json(
             Story::with('category')
-                ->where('is_published', true)
+                ->where('status', 'aprovado')
                 ->orderBy('created_at', 'desc')
                 ->get()
         );
@@ -29,9 +29,6 @@ class StoryController extends Controller
 }
 
 
-    /**
-     * Armazena uma nova história.
-     */
     public function store(Request $request)
     {
         // Validação dos dados
@@ -52,6 +49,7 @@ class StoryController extends Controller
             'category_id' => $request->category_id,
             'image' => $imagePath,
             'is_published' => $request->has('is_published'),
+            'status' => 'pendente', // Pendente por padrão
         ]);
 
         return response()->json([

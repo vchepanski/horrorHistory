@@ -27,3 +27,8 @@ Route::prefix('v1/admin')->group(function () {
     Route::put('/historias/{id}/approve', [AdminStoryController::class, 'approve']);
     Route::delete('/historias/{id}', [AdminStoryController::class, 'destroy']);
 });
+
+Route::prefix('v1')->group(function () {
+    Route::post('/categories', [CategoryController::class, 'store']);
+    Route::put('/categories/{id}/toggle-status', [CategoryController::class, 'toggleStatus']);
+});
