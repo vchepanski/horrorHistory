@@ -1,19 +1,31 @@
 <template>
-    <div>
-      <h1>🕯️ Histórias Publicadas</h1>
+    <div class="lista-container">
+      <h1 class="titulo-lista">📜 Histórias Publicadas</h1>
+
       <div class="cards">
         <div v-for="story in stories" :key="story.id" class="card">
           <router-link :to="`/historia/${story.id}`">
-            <h3>{{ story.title }}</h3>
+            <h3 class="titulo-historia">{{ story.title }}</h3>
           </router-link>
-          <small v-if="story.category">Categoria: {{ story.category.name }}</small>
-          <p>{{ story.content.substring(0, 100) }}...</p>
-          <img v-if="story.image" :src="'/storage/' + story.image" alt="Capa da história" />
+
+          <small v-if="story.category" class="categoria">
+            🏷️ Categoria: {{ story.category.name }}
+          </small>
+
+          <p class="resumo">
+            {{ story.content.length > 300 ? story.content.slice(0, 300) + '...' : story.content }}
+          </p>
+
+          <img
+            v-if="story.image"
+            :src="'/storage/' + story.image"
+            alt="Capa da história"
+            class="imagem"
+          />
         </div>
       </div>
     </div>
   </template>
-
 
   <script setup>
   import { ref, onMounted } from 'vue'
@@ -23,7 +35,7 @@
 
   onMounted(async () => {
     try {
-    const response = await axios.get('/api/v1/stories')
+      const response = await axios.get('/api/v1/stories')
       stories.value = response.data
     } catch (e) {
       console.error('Erro ao carregar histórias', e)
@@ -31,68 +43,74 @@
   })
   </script>
 
-<style scoped>
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  animation: fadeIn 1s ease;
-}
+  <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
 
-.card {
-  background: #111;
-  border: 1px solid #333;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255, 68, 68, 0.1);
-  transition: all 0.3s ease;
-  animation: cardEnter 0.8s ease forwards;
-}
-
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
-  border-color: #ff4444;
-}
-
-.card h3 {
-  color: #ff4444;
-  font-family: 'Creepster', cursive;
-}
-
-.card p {
-  color: #ccc;
-}
-
-.card img {
-  max-width: 100%;
-  margin-top: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 0 10px #000;
-}
-
-/* Animações */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  .lista-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: rgba(255, 248, 220, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(77, 41, 0, 0.4);
+    font-family: 'IM Fell English', serif;
+    color: #3e2f1c;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes cardEnter {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
+  .titulo-lista {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #7a1200;
   }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>
 
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #1a1208;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #3b2a1a;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05), 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: #ff4444;
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+  }
+
+  .titulo-historia {
+    font-size: 1.4rem;
+    font-family: 'Creepster', cursive;
+    color: #ff4444;
+    margin-bottom: 0.4rem;
+  }
+
+  .categoria {
+    display: block;
+    font-size: 0.85rem;
+    color: #cbb68f;
+    margin-bottom: 0.6rem;
+  }
+
+  .resumo {
+    color: #f0e6d2;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .imagem {
+    max-width: 100%;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  }
+  </style>

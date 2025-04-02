@@ -1,51 +1,54 @@
 <template>
-    <div class="max-w-xl p-6 mx-auto shadow-md bg-zinc-900 rounded-xl">
-      <h2 class="mb-4 text-2xl font-bold text-white">Criar nova categoria</h2>
+    <div> <!-- Root único para evitar erro com <Transition> -->
 
-      <form @submit.prevent="submitCategory" class="space-y-4">
-        <input
-          v-model="form.name"
-          type="text"
-          placeholder="Nome da categoria"
-          class="w-full p-3 text-white rounded bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-600"
-        />
+      <div class="max-w-xl p-6 mx-auto shadow-md bg-zinc-900 rounded-xl">
+        <h2 class="mb-4 text-2xl font-bold text-white">Criar nova categoria</h2>
 
-        <button
-          type="submit"
-          class="w-full px-4 py-2 font-semibold text-white transition bg-purple-600 rounded hover:bg-purple-700"
-        >
-          Cadastrar
-        </button>
+        <form @submit.prevent="submitCategory" class="space-y-4">
+          <input
+            v-model="form.name"
+            type="text"
+            placeholder="Nome da categoria"
+            class="w-full p-3 text-white rounded bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-600"
+          />
 
-        <p v-if="successMessage" class="text-green-400">{{ successMessage }}</p>
-        <p v-if="errorMessage" class="text-red-400">{{ errorMessage }}</p>
-      </form>
-
-      <hr class="my-6 border-zinc-700" />
-
-      <div>
-        <h3 class="mb-4 text-xl font-semibold text-white">Categorias cadastradas</h3>
-        <div class="space-y-2">
-          <div
-            v-for="category in categories"
-            :key="category.id"
-            class="flex items-center justify-between px-4 py-3 rounded shadow-sm bg-zinc-800"
+          <button
+            type="submit"
+            class="w-full px-4 py-2 font-semibold text-white transition bg-purple-600 rounded hover:bg-purple-700"
           >
-            <div class="text-zinc-200">
-              {{ category.name }}
-              <span
-                class="ml-2 text-xs px-2 py-0.5 rounded uppercase"
-                :class="category.status === 'ativo' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'"
-              >
-                {{ category.status }}
-              </span>
-            </div>
-            <button
+            Cadastrar
+          </button>
+
+          <p v-if="successMessage" class="text-green-400">{{ successMessage }}</p>
+          <p v-if="errorMessage" class="text-red-400">{{ errorMessage }}</p>
+        </form>
+
+        <hr class="my-6 border-zinc-700" />
+
+        <div>
+          <h3 class="mb-4 text-xl font-semibold text-white">Categorias cadastradas</h3>
+          <div class="space-y-2">
+            <div
+              v-for="category in categories"
+              :key="category.id"
+              class="flex items-center justify-between px-4 py-3 rounded shadow-sm bg-zinc-800"
+            >
+              <div class="text-zinc-200">
+                {{ category.name }}
+                <span
+                  class="ml-2 text-xs px-2 py-0.5 rounded uppercase"
+                  :class="category.status === 'ativo' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'"
+                >
+                  {{ category.status }}
+                </span>
+              </div>
+              <button
                 @click="toggleStatus(category.id)"
                 class="px-3 py-1 text-sm text-white transition bg-purple-700 rounded hover:bg-purple-600"
-                >
+              >
                 {{ category.status === 'ativo' ? 'Inativar' : 'Ativar' }}
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>

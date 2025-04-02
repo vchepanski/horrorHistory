@@ -30,7 +30,7 @@ const routes = [
     component: () => import('../views/Admin/adminStories.vue')
   },
   {
-    path: '/admin/categories', // ⬅️ nova rota admin
+    path: '/admin/categories',
     name: 'admin.categories',
     component: () => import('../views/Admin/AdminFormCategories.vue')
   }
